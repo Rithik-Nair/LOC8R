@@ -1,0 +1,43 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title
+    link(rel='stylesheet', href='/bootstrap/css/amelia.bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    style
+      // Adding background image to body
+      html, body
+        height: 100%
+      body
+        background-image: url('/images/LOC8RLOGO.jpg')
+        background-size: cover
+        background-position: center
+        background-attachment: fixed
+        background-repeat: no-repeat
+
+  body
+    .navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          a.navbar-brand(href='/') Loc8r
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        #navbar-main.navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/about/') <b>About</b>
+            li
+              a(href='/signin') <b>SignIn</b>
+            li
+              a(href='/review') <b>Add Review</b>
+    .container
+      block content
+      footer
+        .row
+          .col-xs-12
+            small &copy; Rithik Loc8r Application 2024
+    script(src='/javascripts/jquery-1.11.1.min.js')
+    script(src='/javascripts/bootstrap.min.js')

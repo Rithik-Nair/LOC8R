@@ -1,0 +1,12 @@
+html, body {
+    height: 100%;
+  }
+  
+  body {
+    background-image: url('/images/LOC8RLOGO.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  
