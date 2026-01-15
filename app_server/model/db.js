@@ -21,3 +21,7 @@ process.on('SIGINT', () => {
     process.exit(0);
   });
 });
+
+
+require('./user');
+require('./location');

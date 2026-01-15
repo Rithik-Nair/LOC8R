@@ -1,12 +1,322 @@
+/* ==========================
+   Global Styles
+========================== */
 html, body {
     height: 100%;
-  }
-  
-  body {
-    background-image: url('/images/LOC8RLOGO.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-  }
-  
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa; /* light soft background */
+    color: #333;
+}
+
+/* ==========================
+   Navbar
+========================== */
+.navbar {
+    min-height: 70px;
+    background: linear-gradient(90deg, #6a11cb, #2575fc); /* purple-blue gradient */
+    border: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    padding: 0 20px;
+}
+
+.navbar-brand {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Navbar menu items */
+.navbar-nav > li > a {
+  font-size: 18px;
+}
+
+.navbar-brand:hover {
+    color: #fff;
+}
+
+.navbar-logo {
+    height: 60px;
+    width: auto;
+    display: block;
+    margin-right: 10px;
+}
+
+.navbar-nav li a {
+    color: white;
+    font-weight: 500;
+}
+
+.navbar-nav li a:hover {
+    color: #ffdd59;
+}
+
+/* ==========================
+   Footer
+========================== */
+footer {
+    background: #2575fc; /* same as navbar gradient end */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer small {
+    font-size: 0.9rem;
+}
+
+/* ==========================
+   Buttons
+========================== */
+.btn-gradient {
+    background: linear-gradient(45deg, #ff6b6b, #f06595);
+    color: white;
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-weight: 500;
+}
+
+.btn-gradient:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    border: none;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.btn-success {
+    background: linear-gradient(45deg, #12c2e9, #c471ed);
+    border: none;
+    color: white;
+    font-weight: 500;
+}
+
+.btn-success:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* ==========================
+   Home Page Layout
+========================== */
+.home-container {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-box {
+    background: linear-gradient(135deg, #fff, #f1f3f5);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.auth-box h2 {
+    font-weight: bold;
+    color: #333;
+}
+
+.auth-box p {
+    color: #555;
+    font-size: 1.1rem;
+}
+
+.auth-box .btn {
+    width: 130px;
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
+}
+
+/* ==========================
+   Feature Cards
+========================== */
+.feature-card {
+    border-radius: 20px;
+    background: linear-gradient(135deg, #fff6e9, #ffe3e3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: #333;
+}
+
+.feature-card:nth-child(1) {
+    background: linear-gradient(135deg, #ff9a9e, #fecfef); /* warm pink */
+}
+
+.feature-card:nth-child(2) {
+    background: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* cool blue */
+}
+
+.feature-card:nth-child(3) {
+    background: linear-gradient(135deg, #84fab0, #8fd3f4); /* teal gradient */
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+.feature-card i {
+    margin-bottom: 15px;
+}
+
+.feature-card h4 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* ==========================
+   Location Cards
+========================== */
+.restaurant-card {
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: #fff;
+    overflow: hidden;
+}
+
+.restaurant-card:nth-child(1) {
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+}
+
+.restaurant-card:nth-child(2) {
+    background: linear-gradient(135deg, #43cea2, #185a9d);
+}
+
+.restaurant-card:nth-child(3) {
+    background: linear-gradient(135deg, #ff9966, #ff5e62);
+}
+
+.restaurant-card:nth-child(4) {
+    background: linear-gradient(135deg, #36d1dc, #5b86e5);
+}
+
+.restaurant-card:nth-child(5) {
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.location-card a.btn.w-100 {
+    padding: 0.5rem 0.75rem;
+    font-weight: 500;
+    background-color: rgba(255,255,255,0.85);
+    color: #333;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.location-card a.btn.w-100:hover {
+    background-color: rgba(255,255,255,1);
+    color: #000;
+    transform: scale(1.05);
+}
+
+/* ==========================
+   Logos
+========================== */
+.navbar-logo {
+    height: 60px;
+    width: auto;
+    display: block;
+}
+
+.home-logo {
+    width: 250px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.home-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  align-items: center;
+}
+
+.hero-box {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 30px;
+  color: white;
+}
+
+.auth-card {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border-radius: 25px;
+}
+
+.brand-title {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.home-logo {
+  max-width: 75%;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 15px rgba(255,255,255,0.6);
+  transform: translateY(-2px);
+}
+
+.features-section h2 {
+  color: white;
+  font-weight: 700;
+}
+
+.feature-card {
+  padding: 35px;
+  border-radius: 25px;
+  color: white;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
+.bg-blue {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+}
+
+.bg-purple {
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+}
+
+.bg-red {
+  background: linear-gradient(135deg, #f85032, #e73827);
+}

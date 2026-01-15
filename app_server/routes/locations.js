@@ -1,48 +1,54 @@
+// app_server/routes/locations.js
 const express = require('express');
 const mongoose = require('mongoose');
-const Location = mongoose.model('Location');
 const router = express.Router();
 
-// Route for listing all locations
-router.get('/', async (req, res, next) => {
-  try {
-    const locations = await Location.find();
-    res.render('locations', { locations });
-  } catch (err) {
-    next(err);
-  }
-});
+const { requireLogin } = require('../middleware/auth');
 
-// Route for viewing a specific location
-router.get('/:locationId', async (req, res, next) => {
+// Import locations controller
+const ctrlLocations = require('../controllers/locations');
+const Location = mongoose.model('Location'); // Ensure model is loaded
+
+/* ===========================
+   PROTECTED: GET /locations
+=========================== */
+router.get('/', requireLogin, ctrlLocations.homelist);
+
+/* ===========================
+   PROTECTED: GET /locations/:locationId
+=========================== */
+router.get('/:locationId', requireLogin, async (req, res, next) => {
   try {
     const location = await Location.findById(req.params.locationId);
     if (!location) {
       return res.status(404).render('404', { message: 'Location not found' });
     }
-    res.render('locationDetail', { location });
+    res.render('locationDetail', { location, user: req.session.user });
   } catch (err) {
     next(err);
   }
 });
 
-// Define the submit review route
-router.post('/submit_review', async (req, res, next) => {
+/* ===========================
+   PROTECTED: POST /locations/submit_review
+=========================== */
+router.post('/submit_review', requireLogin, async (req, res, next) => {
   try {
     const { locationId, reviewText, rating } = req.body;
     const location = await Location.findById(locationId);
+
     if (!location) {
       return res.status(404).render('404', { message: 'Location not found' });
     }
 
     location.reviews.push({
-      author: req.user ? req.user.username : 'Anonymous',  // assuming user info is available
-      reviewText: reviewText,
-      rating: rating
+      author: req.session.user.username, // use logged-in user's username
+      reviewText,
+      rating
     });
 
     await location.save();
-    res.redirect(`/locations/${locationId}`);  // Redirect back to the location detail page
+    res.redirect(`/locations/${locationId}`);
   } catch (err) {
     next(err);
   }

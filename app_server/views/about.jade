@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  .container(style='padding-top: 80px; padding-bottom: 80px;')
+    h1.text-center.mb-5= title
+
+    .row
+      .col-md-8.offset-md-2
+        .card.shadow-sm
+          .card-body.p-5
+            h3.card-title.mb-4 About LOC8R
+
+            p.lead
+              | LOC8R is a location-based restaurant discovery application that helps you find nearby restaurants based on your current location.
+
+            h4.mt-4.mb-3 Features
+
+            ul.list-unstyled
+              li.mb-3
+                i.fa.fa-check.text-success.me-2
+                strong Live Location Tracking
+                | - Enable live location to find restaurants near you instantly
+              
+              li.mb-3
+                i.fa.fa-check.text-success.me-2
+                strong Distance Filtering
+                | - Automatically shows restaurants within 1-2 km range
+              
+              li.mb-3
+                i.fa.fa-check.text-success.me-2
+                strong OpenStreetMap Integration
+                | - Uses Overpass API for comprehensive restaurant data
+              
+              li.mb-3
+                i.fa.fa-check.text-success.me-2
+                strong User Reviews
+                | - Read and write reviews for restaurants you visit
+
+            h4.mt-4.mb-3 Technology Stack
+
+            ul
+              li Node.js & Express - Backend framework
+              li MongoDB - Database
+              li Jade/Pug - Template engine
+              li Bootstrap - Responsive UI
+              li Overpass API - Restaurant data
+              li Browser Geolocation API - Location services
+
+            p.mt-4.text-muted
+              | © 2024 LOC8R Application. All rights reserved.
+

@@ -1,12 +1,63 @@
-each location in locations
-  .col-xs-12.list-group-item
-    h4
-      a(href=`/locations/${location._id}`)= location.name  // Use the actual ID here
-      small &nbsp;
-      +outputRating(location.rating)
-    span.badge.pull-right.badge-default= location.distance
-    p.address= location.address
-    p
-      each facility in location.facilities
-        span.label.label-warning= facility
-        | &nbsp;
+extends layout
+
+block content
+  .container(style='padding-top: 120px; padding-bottom: 80px;')
+    
+    // Page title
+    h1.text-center.mb-4= title
+
+    // Live Location Button below title
+    .d-flex.justify-content-center.mb-5
+      button.btn.btn-lg.btn-primary#liveLocationBtn Enable Live Location
+
+    if message
+      p.lead.text-center.text-danger= message
+
+    if locations.length
+      .row.g-4
+        each loc in locations
+          .col-md-6.col-lg-4
+            .card.restaurant-card.h-100.shadow-sm
+              .card-body.text-center.p-4
+                // Small restaurant icon
+                i.fa.fa-cutlery.fa-2x.text-primary.mb-3
+
+                // Restaurant Name
+                h3.fw-bold.mb-3.text-dark= loc.name
+
+                // Distance
+                p.text-muted.mb-3
+                  i.fa.fa-map-marker.me-2
+                  | #{loc.distance} meters away
+
+                // Google link
+                if loc.googleLink
+                  a.btn.btn-light.btn-sm.text-primary(href=loc.googleLink, target='_blank')
+                    i.fa.fa-external-link.me-1
+                    | View Photos on Google
+    else
+      p.text-center.lead No restaurants to show.
+
+block styles
+  style.
+    .restaurant-card {
+      border-radius: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      background-color :black;
+    }
+    .restaurant-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.25);
+      background: linear-gradient(135deg, #ffe5d4 0%, #ffdac1 100%);
+    }
+    .btn-sm {
+      width: 160px;
+    }
+    .card-body {
+      min-height: 160px;
+    }
+
+block scripts
+  // Location script
+  script(src='/javascripts/location.js')

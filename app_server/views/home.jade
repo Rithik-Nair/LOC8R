@@ -1,0 +1,58 @@
+extends layout
+
+block content
+  .home-wrapper
+    .container
+
+      // HERO SECTION
+      .hero-box.shadow-lg.p-5.rounded
+        .row.align-items-center
+
+          // LEFT: AUTH + TEXT
+          .col-lg-6.col-md-12
+            .auth-card.p-5
+              h1.brand-title.mb-3 Loc8R
+              p.tagline.mb-4
+                | Discover cafes, workspaces, and places with
+                strong Wi-Fi near you.
+
+              // Flash message
+              if error && error.length
+                .alert.alert-danger #{error}
+              if success && success.length
+                .alert.alert-success #{success}
+
+              .action-buttons.mt-4
+                if !user
+                  a.btn.btn-lg.btn-primary.btn-glow.me-3(href='/login') Login
+                  a.btn.btn-lg.btn-outline-light.btn-glow(href='/register') Register
+                else
+                  p.text-success.mb-2 Hello, #{user.username}!
+                  a.btn.btn-lg.btn-warning(href='/logout') Logout
+
+          // RIGHT: LOGO
+          .col-lg-6.col-md-12.text-center
+            img.home-logo(src='/images/LOC8RLOGO.jpg', alt='Loc8R Logo')
+
+      // FEATURES SECTION
+      .features-section.mt-5
+        h2.text-center.mb-5 Why Loc8R?
+
+        .row.g-4
+          .col-md-4
+            .feature-card.bg-blue.p-4.shadow-sm.rounded.text-center
+              i.fa.fa-wifi.fa-3x.mb-3.text-white
+              h4.text-white Reliable Wi-Fi
+              p.text-white Verified places with stable and fast internet.
+
+          .col-md-4
+            .feature-card.bg-purple.p-4.shadow-sm.rounded.text-center
+              i.fa.fa-coffee.fa-3x.mb-3.text-white
+              h4.text-white Work-Friendly Spots
+              p.text-white Comfortable cafes and coworking environments.
+
+          .col-md-4
+            .feature-card.bg-red.p-4.shadow-sm.rounded.text-center
+              i.fa.fa-map-marker.fa-3x.mb-3.text-white
+              h4.text-white Nearby Locations
+              p.text-white Discover productive places around you.

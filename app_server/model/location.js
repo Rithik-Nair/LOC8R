@@ -1,6 +1,15 @@
 const mongoose = require('mongoose');
 
-// Schema for Location
+const reviewSchema = new mongoose.Schema({
+  author: String,
+  rating: Number,
+  reviewText: String,
+  createdOn: {
+    type: Date,
+    default: Date.now
+  }
+});
+
 const locationSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -9,36 +18,17 @@ const locationSchema = new mongoose.Schema({
   address: String,
   rating: {
     type: Number,
-    'default': 0,
+    default: 0,
     min: 0,
     max: 5
   },
   facilities: [String],
   coords: {
     type: [Number],
-    index: '2dsphere'  // Geospatial indexing for location
+    index: '2dsphere'
   },
-  openingTimes: [{
-    days: String,
-    opening: String,
-    closing: String,
-    closed: Boolean
-  }],  // Subdocument array for opening times
-  reviews: [{
-    author: String,
-    rating: {
-      type: Number,
-      required: true,
-      min: 0,
-      max: 5
-    },
-    reviewText: String,
-    createdOn: {
-      type: Date,
-      'default': Date.now
-    }
-  }]  // Subdocument array for reviews
+  reviews: [reviewSchema]
 });
 
-// Register the model
-mongoose.model('Location', locationSchema);  // Make sure this matches the model name used in routes
+// ✅ THIS LINE REGISTERS THE MODEL
+mongoose.model('Location', locationSchema);

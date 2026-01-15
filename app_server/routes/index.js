@@ -1,30 +1,33 @@
 var express = require('express');
 var router = express.Router();
-var ctrlLocations = require('../controllers/locations');
-var ctrlothers = require('../controllers/others');
-var ctrlmain = require('../controllers/main');
 
-// Route for home page
-router.get('/', ctrlLocations.homelist);
+const ctrlHome = require('../controllers/home');
+const ctrlLocations = require('../controllers/locations');
+const ctrlOthers = require('../controllers/others');
+const ctrlMain = require('../controllers/main');
+const ctrlAuth = require('../controllers/auth');
 
-// Routes for location info pages
-router.get('/locations', ctrlLocations.locationInfo);
-router.get('/location1', ctrlLocations.locationInfo1);
-router.get('/location2', ctrlLocations.locationInfo2);
+// HOME (Landing Page)
+// HOME (Landing Page)
+router.get('/', ctrlHome.index);
 
-// Route for adding a review
+// AUTH
+router.get('/login', ctrlAuth.login);
+router.post('/login', ctrlAuth.loginSubmit);
+router.get('/register', ctrlAuth.register);
+router.post('/register', ctrlAuth.registerSubmit);
+
+// LOCATIONS
+router.get('/locations', ctrlLocations.homelist);
+// router.get('/location1', ctrlLocations.locationInfo1);
+// router.get('/location2', ctrlLocations.locationInfo2);
+
+// ADD REVIEW
 router.get('/location/review/new', ctrlLocations.addReview);
 
-// Route for about page
-router.get('/about', ctrlothers.about);
-
-// Routes for sign-in and review pages
-router.get('/signin', ctrlmain.signin);
-router.get('/review', ctrlmain.review);
-
-// Route for register page
-router.get('/register', function(req, res, next) {
-  res.render('register', { title: 'Register' });
-});
+// OTHER PAGES
+router.get('/about', ctrlOthers.about);
+router.get('/signin', ctrlMain.signin);
+router.get('/review', ctrlMain.review);
 
 module.exports = router;
