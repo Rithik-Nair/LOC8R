@@ -14,7 +14,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 
 app.use(session({
-  secret: 'loc8r_secret_key',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
